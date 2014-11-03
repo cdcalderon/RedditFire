@@ -1,0 +1,13 @@
+<div ng-repeat="(postId, post) in vm.posts">
+    <a ng-href="{{post.url}}"> {{post.title}}</a>
+    <a ng-click="vm.deletePost(postId)">Delete</a>
+</div>
+
+<form ng-submit="vm.submitPost()">
+    <input type="text" ng-model="vm.post.title" placeholder="title"/>
+    <input type="text" ng-model="vm.post.url" placeholder="Url"/>
+    <input type="submit" value="add Post"/>
+</form>
+
+        Posts: {{vm.posts}}
+        Post: {{vm.post}}
