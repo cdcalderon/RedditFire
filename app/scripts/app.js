@@ -27,6 +27,10 @@ var app = angular
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl as vm'
       })
+        .when('/posts/:postId', {
+            templateUrl: 'views/showPost.html',
+            controller: 'PostViewCtrl as vm'
+        })
 
       .otherwise({
         redirectTo: '/'

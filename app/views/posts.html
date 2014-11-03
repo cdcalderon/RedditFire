@@ -1,6 +1,7 @@
-<div ng-repeat="(postId, post) in vm.posts">
+<div ng-repeat="post in vm.posts">
     <a ng-href="{{post.url}}"> {{post.title}}</a>
-    <a ng-click="vm.deletePost(postId)">Delete</a>
+    <a ng-href="#/posts/{{post.$id }}"> Comments</a>
+    <a ng-click="vm.deletePost(post)">Delete</a>
 </div>
 
 <form ng-submit="vm.submitPost()">

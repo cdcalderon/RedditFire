@@ -7,20 +7,16 @@
     app.controller('PostsCtrl', ["Post", PostsCtrl]);
     function PostsCtrl(Post){
       var vm = this;
-      vm.posts = Post.get();
+      vm.posts = Post.all;
       vm.post = {url: 'http://', title:''};
       vm.submitPost = function(){
-          Post.save(vm.post, function(ref){
-              vm.posts[ref.name] = vm.post;
-              vm.post = {url: 'http://', title:''};
+          Post.create(vm.post).then(function(ref){
+              vm.post = {url: 'http://', title:''}; //reset post to initial state
           });
 
       };
-      vm.deletePost = function(postId){
-        Post.delete({id: postId}, function(){
-            delete vm.posts[postId];
-        });
-        //  vm.posts.splice(index, 1)
+      vm.deletePost = function(post){
+        Post.remove(post)
       }
     };
 })();
