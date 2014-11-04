@@ -25,6 +25,12 @@
             <li ng-show="signedIn()">
                 <a ng-href="#" ng-click="logout()">Logout</a>
             </li>
+            <li ng-hide="signedIn()">
+                <a ng-href="#/login" >Login</a>
+            </li>
+            <li ng-hide="signedIn()">
+                <a ng-href="#/register" >Register</a>
+            </li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
