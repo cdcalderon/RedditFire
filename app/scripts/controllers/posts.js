@@ -4,14 +4,16 @@
  'use strict';
 
 (function(){
-    app.controller('PostsCtrl', ["Post", PostsCtrl]);
-    function PostsCtrl(Post){
+    app.controller('PostsCtrl', ["Post", "$location", PostsCtrl]);
+    function PostsCtrl(Post, $location){
       var vm = this;
       vm.posts = Post.all;
       vm.post = {url: 'http://', title:''};
+
       vm.submitPost = function(){
           Post.create(vm.post).then(function(ref){
-              vm.post = {url: 'http://', title:''}; //reset post to initial state
+              $location.path('/posts/' + ref.name());
+             // vm.post = {url: 'http://', title:''}; //reset post to initial state
           });
 
       };
