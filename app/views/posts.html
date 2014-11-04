@@ -1,14 +1,21 @@
-<div ng-repeat="post in vm.posts">
-    <a ng-href="{{post.url}}"> {{post.title}}</a>
-    <a ng-href="#/posts/{{post.$id }}"> Comments</a>
-    <a ng-click="vm.deletePost(post)">Delete</a>
+<div class="container posts-page">
+    <div class="post row" ng-repeat="post in vm.posts">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-md-9 col-xs-11">
+
+            <div class="info">
+                <a ng-href="{{ post.url }}">
+                    {{ post.title }}
+                    <span class="url">({{ post.url | hostnameFromUrl}})</span>
+                </a>
+            </div>
+            <div>
+                <span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
+                &mdash;
+                <a ng-href="#/posts/{{ post.$id }}">comments</a>
+                <a ng-click="deletePost(post)">delete</a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<form ng-submit="vm.submitPost()">
-    <input type="text" ng-model="vm.post.title" placeholder="title"/>
-    <input type="text" ng-model="vm.post.url" placeholder="Url"/>
-    <input type="submit" value="add Post"/>
-</form>
-
-        Posts: {{vm.posts}}
-        Post: {{vm.post}}

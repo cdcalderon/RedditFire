@@ -9,14 +9,14 @@
       var vm = this;
       vm.posts = Post.all;
       vm.post = {url: 'http://', title:''};
-
-      vm.submitPost = function(){
-          Post.create(vm.post).then(function(ref){
-              $location.path('/posts/' + ref.name());
-             // vm.post = {url: 'http://', title:''}; //reset post to initial state
-          });
-
-      };
+///refactored code moved to nav controller
+//      vm.submitPost = function(){
+//          Post.create(vm.post).then(function(ref){
+//              $location.path('/posts/' + ref.name());
+//             // vm.post = {url: 'http://', title:''}; //reset post to initial state
+//          });
+//
+//      };
       vm.deletePost = function(post){
         Post.remove(post)
       }

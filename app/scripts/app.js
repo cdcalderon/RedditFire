@@ -31,7 +31,15 @@ var app = angular
             templateUrl: 'views/showPost.html',
             controller: 'PostViewCtrl as vm'
         })
-
+        .when('/register', {
+            templateUrl: 'views/register.html',
+            controller: 'AuthCtrl',
+            resolve: {
+                user: function (Auth) {
+                    return Auth.resolveUser()
+                }
+            }
+        })
       .otherwise({
         redirectTo: '/'
       });

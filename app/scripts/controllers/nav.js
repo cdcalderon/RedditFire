@@ -1,6 +1,9 @@
 'use strict';
 
-app.controller('NavCtrl', function ($scope, $location, Post) {
+app.controller('NavCtrl', function ($scope, $location, Post, Auth) {
+    $scope.signedIn = Auth.signedIn;
+    $scope.logout = Auth.logout;
+
     $scope.post = {url: 'http://', title: ''};
 
     $scope.submitPost = function () {
