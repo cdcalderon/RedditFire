@@ -4,10 +4,11 @@
  'use strict';
 
 (function(){
-    app.controller('PostsCtrl', ["Post", "$location", PostsCtrl]);
-    function PostsCtrl(Post, $location){
+    app.controller('PostsCtrl', ["Post", "$location", "Auth",  PostsCtrl]);
+    function PostsCtrl(Post, $location, Auth){
       var vm = this;
       vm.posts = Post.all;
+      vm.user = Auth.user;
       vm.post = {url: 'http://', title:''};
 ///refactored code moved to nav controller
 //      vm.submitPost = function(){

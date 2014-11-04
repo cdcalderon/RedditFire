@@ -14,7 +14,10 @@
 
         //#region public functions
         function create(post){
-            return posts.$add(post);
+            return posts.$add(post).then(function(postRef){
+                $firebase(ref.child('user_post').child(post.creatorUID)).$push(postRef.name());
+                return postRef;
+            });
         }
 
         function get(postId){
