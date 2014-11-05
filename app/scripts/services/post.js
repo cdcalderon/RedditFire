@@ -9,7 +9,8 @@
             all: posts,
             create: create,
             get: get,
-            remove: remove
+            remove: remove,
+            comments: comments
         };
 
         //#region public functions
@@ -26,6 +27,10 @@
 
         function remove(post){
             return posts.$remove(post);
+        }
+
+        function comments(postId){
+            return $firebase(ref.child('comments').child(postId)).$asArray();
         }
         //#endRegion
     };

@@ -1,5 +1,54 @@
-<div>
-    <a ng-href="vm.post.url">{{vm.post.title}}</a>
-</div>
+<div class="container posts-page">
 
-<a ng-href="#/posts"> Back to Posts</a>
+    <div class="post row">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-md-9 col-xs-11">
+            <div class="info">
+                <a ng-href="{{ vm.post.url }}">
+                    {{ vm.post.title }}
+                    <span class="url">({{ vm.post.url | hostnameFromUrl }})</span>
+                </a>
+            </div>
+            <div>
+        <span>
+          submitted by
+          <a ng-href="#/users/{{ vm.post.creatorUID }}">
+              {{ vm.post.creator }}
+          </a>
+        </span>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+    <div ng-repeat="comment in vm.comments" class="row cmt">
+        <div class="col-md-12">
+            <p>{{ comment.text }}</p>
+            <p class="author">posted by
+                <a ng-href="#/users/{{ comment.creatorUID }}">
+                    {{ comment.creator }}
+                </a>
+                <a ng-href="" ng-click="vm.deleteComment(comment)" ng-show="vm.signedIn() && comment.creatorUID === vm.user.uid">
+                 (Delete)
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="cmt-form">
+        <div ng-hide="vm.signedIn()">
+            <p><a href="#/login">Sign in</a> to post a comment</p>
+        </div>
+
+        <form ng-show="vm.signedIn()" ng-submit="vm.addComment()">
+            <textarea
+                    ng-model="vm.commentText"
+                    placeholder="Post a Comment"
+                    class="form-control"></textarea><br />
+            <input type="submit" value="Post Comment" class="btn btn-primary" />
+        </form>
+    </div>
+
+</div>
